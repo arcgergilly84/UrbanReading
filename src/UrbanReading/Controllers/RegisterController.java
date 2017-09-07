@@ -11,9 +11,8 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.*;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
+import java.util.ArrayList;
 
 public class RegisterController {
     /*
@@ -31,6 +30,8 @@ public class RegisterController {
 
     boolean passValidation = false;
     boolean emailValid = false;
+    Controller control = new Controller();
+    ArrayList<String> users = new ArrayList<>();
 
      /*
         When Register button pushed data validated and persisted to DB when correct and Email confirmation
@@ -39,12 +40,16 @@ public class RegisterController {
     public void registerUser(ActionEvent event) throws SQLException {
         validationLabel.setText("");
         boolean validate = validation();
-        if (validate && emailValid && passValidation) {
-            connectToDB();
-            try {
-                gotoUserCreation(event);
-            }catch (Exception e){
-                System.out.println(e);
+        if (checkIfUsernameExists()) {
+            validationLabel.setText("Username already exists");
+        } else {
+            if (validate && emailValid && passValidation) {
+                connectToDB();
+                try {
+                    gotoUserCreation(event);
+                } catch (Exception e) {
+                    System.out.println(e);
+                }
             }
         }
     }
@@ -94,7 +99,6 @@ public class RegisterController {
      }
 
     public void connectToDB(){
-        Controller control = new Controller();
         try {
             Connection con = control.connectDB();
             PreparedStatement statement  = con.prepareStatement("INSERT INTO user_table(firstName, lastName, userName, email, pass) VALUES (?,?,?,?,?)");
@@ -120,6 +124,25 @@ public class RegisterController {
         Stage userStage = (Stage)((Node)event.getSource()).getScene().getWindow();
         userStage.setScene(userScene);
         userStage.show();
+    }
+
+    public boolean checkIfUsernameExists() throws SQLException{
+
+        Connection con = control.connectDB();
+        Statement statement  = con.createStatement();
+        ResultSet rs = statement.executeQuery("SELECT userName FROM user_table");
+
+        while (rs.next()){
+            users.add(rs.getString("userName"));
+        }
+
+        for(String user : users){
+            if(user.equals(username_field.getText())){
+                return true;
+            }
+        }
+        return false;
+
     }
 
 
