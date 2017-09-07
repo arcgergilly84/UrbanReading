@@ -1,0 +1,51 @@
+.login-label{
+    -fx-font-family: "Comic Sans MS";
+    -fx-font-weight: bold;
+    -fx-text-fill: #000000;
+}
+
+.anchorPane{
+    -fx-background-color: radial-gradient(center 50% 50%, radius 50%,#ffffff,#000000);
+}
+
+.login-textfields{
+
+    -fx-border-color: black;
+}
+
+.login-button{
+
+    -fx-background-color: black;
+    -fx-text-fill: white;
+}
+
+.login-button:hover{
+    -fx-background-color: gray;
+}
+
+.title{
+    -fx-font-family: "Tahoma";
+    -fx-font-size: 15pt;
+}
+
+#description{
+    -fx-font-style: italic;
+}
+
+.collectionPane{
+    -fx-background-image: url("../resources/Images/library.jpg");
+
+}
+
+.collectionButtons {
+   -fx-background-color: aquamarine;
+   -fx-text-fill: black;
+}
+
+.collectionButtons:hover {
+    -fx-background-color: mediumslateblue;
+}
+
+.selector-label {
+    -fx-text-fill: white;
+}

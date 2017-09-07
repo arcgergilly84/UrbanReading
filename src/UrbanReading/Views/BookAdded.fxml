@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UrbanReading.Controllers.BookAddedController">
+   <children>
+      <Label fx:id="book_added_label" layoutX="229.0" layoutY="85.0" text="Book Added">
+         <font>
+            <Font size="26.0" />
+         </font>
+      </Label>
+      <Button layoutX="63.0" layoutY="251.0" mnemonicParsing="false" onAction="#addAnotherBook" text="Add another Book" />
+      <Button layoutX="406.0" layoutY="251.0" mnemonicParsing="false" onAction="#viewCollection" text="View Collection" />
+   </children>
+</AnchorPane>

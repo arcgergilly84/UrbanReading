@@ -1,0 +1,34 @@
+DROP TABLE IF EXISTS book_collection CASCADE ;
+DROP TABLE IF EXISTS files CASCADE ;
+DROP TABLE IF EXISTS user_table CASCADE ;
+
+CREATE TABLE user_table (
+  user_id INT PRIMARY KEY AUTO_INCREMENT,
+  firstName VARCHAR(50) NOT NULL,
+  lastName VARCHAR(100) NOT NULL ,
+  userName VARCHAR(255) NOT NULL UNIQUE ,
+  email VARCHAR(100) NOT NULL UNIQUE ,
+  pass VARCHAR(100) NOT NULL
+);
+
+CREATE TABLE files (
+  pdf_id INT PRIMARY KEY AUTO_INCREMENT,
+  filename VARCHAR(50) NOT NULL,
+  filesize VARCHAR(100) NOT NULL,
+  pdf LONGBLOB
+);
+
+CREATE TABLE book_collection (
+  collection_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  book_title VARCHAR(50) NOT NULL,
+  isbn VARCHAR(20) NOT NULL,
+  subject VARCHAR(100) NOT NULL,
+  description VARCHAR(255) NOT NULL,
+  user_id INT NOT NULL,
+  FOREIGN KEY (user_id) REFERENCES user_table(user_id),
+  file VARCHAR(255) NOT NULL,
+  pdf_id INT,
+  FOREIGN KEY (pdf_id) REFERENCES files(pdf_id)
+);
+
+

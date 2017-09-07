@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-400.0" minWidth="-600.0" nodeOrientation="LEFT_TO_RIGHT" opacity="0.9" prefHeight="400.0" prefWidth="600.0" styleClass="anchorPane" stylesheets="@../Stylesheet/main.css" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UrbanReading.Controllers.Controller">
+ <children>
+    <Label layoutX="124.0" layoutY="108.0" styleClass="login-label" stylesheets="@../Stylesheet/main.css" text="Username:" textFill="#120d0d">
+       <padding>
+          <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+       </padding>
+    </Label>
+    <Label layoutX="126.0" layoutY="179.0" styleClass="login-label" stylesheets="@../Stylesheet/main.css" text="Password:">
+       <padding>
+          <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+       </padding>
+    </Label>
+    <Button fx:id="login_button" layoutX="236.0" layoutY="232.0" mnemonicParsing="false" onAction="#loginButton" prefHeight="31.0" prefWidth="90.0" styleClass="login-button" stylesheets="@../Stylesheet/main.css" text="Login">
+       <padding>
+          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+       </padding>
+         <effect>
+            <DropShadow />
+         </effect>
+    </Button>
+    <Button fx:id="register_button" layoutX="347.0" layoutY="232.0" mnemonicParsing="false" onAction="#registerButton" prefHeight="31.0" prefWidth="90.0" styleClass="login-button" stylesheets="@../Stylesheet/main.css" text="Register">
+       <padding>
+          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+       </padding>
+         <effect>
+            <DropShadow />
+         </effect>
+    </Button>
+    <TextField fx:id="username_field" layoutX="236.0" layoutY="106.0" promptText="Please enter Username" styleClass="login-textfields" stylesheets="@../Stylesheet/main.css" />
+    <PasswordField fx:id="password_field" layoutX="236.0" layoutY="177.0" promptText="Please enter password" styleClass="login-textfields" />
+    <Label fx:id="credentialsValidationLabel" layoutX="150.0" layoutY="304.0" styleClass="login-label" stylesheets="@../Stylesheet/main.css" wrapText="true" />
+ </children>
+</AnchorPane>
