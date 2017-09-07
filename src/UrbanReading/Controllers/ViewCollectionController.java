@@ -28,8 +28,7 @@ public class ViewCollectionController implements Initializable{
     @FXML ImageView imageView;
     @FXML Button next_button;
 
-    ArrayList<Book> books = new ArrayList<Book>();
-    String filename;
+    ArrayList<Book> books = new ArrayList<>();
     int pdfId;
 
     public void nextBook(ActionEvent event){
@@ -100,6 +99,7 @@ public class ViewCollectionController implements Initializable{
     public void viewPdf(ActionEvent event) throws IOException, SQLException {
 
         byte[] fileBytes;
+        String filename = "";
 
         Controller control = new Controller();
         Connection con = control.connectDB();
@@ -107,15 +107,25 @@ public class ViewCollectionController implements Initializable{
         statement.setInt(1, pdfId);
 
         ResultSet rs = statement.executeQuery();
+        String pathname = "";
         if (rs.next()){
             fileBytes = rs.getBytes("pdf");
             filename = rs.getString("filename");
-            OutputStream newFile = new FileOutputStream("D:/pdfs/" + filename);
+            pathname = "D:/pdfs/" + filename;
+            OutputStream newFile = new FileOutputStream(pathname);
             newFile.write(fileBytes);
             newFile.close();
 
         }
-        Desktop.getDesktop().open(new File("D:/pdfs/" + filename));
+        File file = new File(pathname);
+        Desktop.getDesktop().open(file);
+
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e){
+            e.getStackTrace();
+        }
+        file.delete();
 
         statement.close();
         con.close();
